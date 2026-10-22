@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,74 +6,55 @@
     <title>Sharon Kim | About Me</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #333333;
+            color: #333;
             margin: 0;
-            padding: 0;
             line-height: 1.8;
         }
 
-        header {
-            text-align: center;
-            padding: 55px 20px 30px;
-        }
+        header, footer { text-align: center; }
+
+        header { padding: 55px 20px 30px; }
 
         header h1 {
             font-size: 36px;
-            font-weight: 600;
             margin: 0 0 8px;
         }
 
-        header p {
-            color: #777777;
-            margin: 0;
-        }
+        header p, footer { color: #888; }
 
         main {
             max-width: 760px;
-            margin: 0 auto;
+            margin: auto;
             padding: 20px 25px 50px;
         }
 
-        section {
-            margin-bottom: 45px;
-        }
+        section { margin-bottom: 45px; }
 
         h2 {
             font-size: 23px;
-            font-weight: 600;
             margin-bottom: 12px;
         }
 
-        p {
-            margin-top: 0;
-        }
+        p { margin-top: 0; }
 
-        .tools-list {
+        .tools-list, .legend {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
 
-        .tools-list li {
-            margin: 3px 0;
-        }
+        .tools-list li { margin: 3px 0; }
 
-        .chart-container {
-            text-align: center;
-            margin-top: 25px;
-        }
+        .chart-container { text-align: center; }
 
-        .chart-instruction {
+        .chart-instruction, .legend li {
             font-size: 14px;
-            color: #777777;
         }
+
+        .chart-instruction { color: #777; }
 
         .pie-chart {
             width: 270px;
@@ -86,61 +65,29 @@
         .pie-chart svg {
             display: block;
             width: 100%;
-            height: auto;
-            overflow: visible;
         }
 
         .slice {
-            stroke: #ffffff;
+            stroke: white;
             stroke-width: 1.5;
             cursor: pointer;
-            transition: fill 0.2s ease;
         }
 
-        .sleep {
-            fill: #555555;
-        }
+        .sleep { fill: #555; }
+        .study { fill: #858585; }
+        .design { fill: #aaa; }
+        .free-time { fill: #ccc; }
+        .meals { fill: #e8e8e8; }
 
-        .study {
-            fill: #858585;
-        }
-
-        .design {
-            fill: #aaaaaa;
-        }
-
-        .free-time {
-            fill: #cccccc;
-        }
-
-        .meals {
-            fill: #e8e8e8;
-        }
-
-        .sleep:hover {
-            fill: #777777;
-        }
-
-        .study:hover {
-            fill: #666666;
-        }
-
-        .design:hover {
-            fill: #8c8c8c;
-        }
-
-        .free-time:hover {
-            fill: #aaaaaa;
-        }
-
-        .meals:hover {
-            fill: #c9c9c9;
-        }
+        .sleep:hover { fill: #777; }
+        .study:hover { fill: #666; }
+        .design:hover { fill: #8c8c8c; }
+        .free-time:hover { fill: #aaa; }
+        .meals:hover { fill: #c9c9c9; }
 
         .chart-info {
             display: none;
-            font-size: 16px;
-            font-weight: 600;
+            font-weight: bold;
             margin: 12px 0;
         }
 
@@ -152,23 +99,15 @@
             display: block;
         }
 
-        .chart-total {
-            font-weight: 600;
-            margin: 15px 0;
-        }
+        .chart-total { font-weight: bold; }
 
         .legend {
-            list-style: none;
             display: inline-block;
             text-align: left;
-            padding: 0;
             margin: 10px auto;
         }
 
-        .legend li {
-            margin: 5px 0;
-            font-size: 14px;
-        }
+        .legend li { margin: 5px 0; }
 
         .legend span {
             display: inline-block;
@@ -179,8 +118,6 @@
         }
 
         footer {
-            text-align: center;
-            color: #888888;
             font-size: 13px;
             padding: 20px;
         }
@@ -188,20 +125,15 @@
 </head>
 
 <body>
-
     <header>
         <h1>About Me</h1>
         <p>Welcome to my personal webpage!</p>
     </header>
 
     <main>
-
         <section>
             <h2>Introduction</h2>
-            <p>
-                Hi, I'm Sharon Kim! I am a Design student
-                interested in graphic design.
-            </p>
+            <p>Hi, I'm Sharon Kim! I am a Design student interested in graphic design.</p>
         </section>
 
         <section>
@@ -218,106 +150,52 @@
 
         <section>
             <h2>My Daily Routine</h2>
-            <p>
-                This chart shows how I spend my 24 hours each day.
-            </p>
+            <p>This chart shows how I spend my 24 hours each day.</p>
 
             <div class="chart-container">
-
-                <p class="chart-instruction">
-                    Hover over each slice to explore the details.
-                </p>
+                <p class="chart-instruction">Hover over each slice to explore the details.</p>
 
                 <div class="pie-chart">
-                    <svg viewBox="0 0 200 200"
-                         xmlns="http://www.w3.org/2000/svg">
-
-                        <path class="slice sleep"
-                              d="M100 100 L100 10
-                                 A90 90 0 0 1 186.93 123.29 Z">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path class="slice sleep" d="M100 100 L100 10 A90 90 0 0 1 186.93 123.29 Z">
                             <title>Sleep: 7 hours (29.2%)</title>
                         </path>
-
-                        <path class="slice study"
-                              d="M100 100 L186.93 123.29
-                                 A90 90 0 0 1 76.71 186.93 Z">
+                        <path class="slice study" d="M100 100 L186.93 123.29 A90 90 0 0 1 76.71 186.93 Z">
                             <title>Classes &amp; Study: 6 hours (25%)</title>
                         </path>
-
-                        <path class="slice design"
-                              d="M100 100 L76.71 186.93
-                                 A90 90 0 0 1 13.07 123.29 Z">
+                        <path class="slice design" d="M100 100 L76.71 186.93 A90 90 0 0 1 13.07 123.29 Z">
                             <title>Design Work: 4 hours (16.7%)</title>
                         </path>
-
-                        <path class="slice free-time"
-                              d="M100 100 L13.07 123.29
-                                 A90 90 0 0 1 55 22.06 Z">
+                        <path class="slice free-time" d="M100 100 L13.07 123.29 A90 90 0 0 1 55 22.06 Z">
                             <title>Free Time: 5 hours (20.8%)</title>
                         </path>
-
-                        <path class="slice meals"
-                              d="M100 100 L55 22.06
-                                 A90 90 0 0 1 100 10 Z">
+                        <path class="slice meals" d="M100 100 L55 22.06 A90 90 0 0 1 100 10 Z">
                             <title>Meals &amp; Prep: 2 hours (8.3%)</title>
                         </path>
-
                     </svg>
                 </div>
 
-                <p class="chart-info sleep-info">
-                    Sleep: 7 hours (29.2%)
-                </p>
-
-                <p class="chart-info study-info">
-                    Classes &amp; Study: 6 hours (25%)
-                </p>
-
-                <p class="chart-info design-info">
-                    Design Work: 4 hours (16.7%)
-                </p>
-
-                <p class="chart-info free-info">
-                    Free Time: 5 hours (20.8%)
-                </p>
-
-                <p class="chart-info meals-info">
-                    Meals &amp; Prep: 2 hours (8.3%)
-                </p>
+                <p class="chart-info sleep-info">Sleep: 7 hours (29.2%)</p>
+                <p class="chart-info study-info">Classes &amp; Study: 6 hours (25%)</p>
+                <p class="chart-info design-info">Design Work: 4 hours (16.7%)</p>
+                <p class="chart-info free-info">Free Time: 5 hours (20.8%)</p>
+                <p class="chart-info meals-info">Meals &amp; Prep: 2 hours (8.3%)</p>
 
                 <p class="chart-total">24 Hours Total</p>
 
                 <ul class="legend">
-                    <li>
-                        <span style="background:#555555"></span>
-                        Sleep: 7 hours
-                    </li>
-                    <li>
-                        <span style="background:#858585"></span>
-                        Classes &amp; Study: 6 hours
-                    </li>
-                    <li>
-                        <span style="background:#aaaaaa"></span>
-                        Design Work: 4 hours
-                    </li>
-                    <li>
-                        <span style="background:#cccccc"></span>
-                        Free Time: 5 hours
-                    </li>
-                    <li>
-                        <span style="background:#e8e8e8"></span>
-                        Meals &amp; Prep: 2 hours
-                    </li>
+                    <li><span style="background:#555"></span>Sleep: 7 hours</li>
+                    <li><span style="background:#858585"></span>Classes &amp; Study: 6 hours</li>
+                    <li><span style="background:#aaa"></span>Design Work: 4 hours</li>
+                    <li><span style="background:#ccc"></span>Free Time: 5 hours</li>
+                    <li><span style="background:#e8e8e8"></span>Meals &amp; Prep: 2 hours</li>
                 </ul>
-
             </div>
         </section>
-
     </main>
 
     <footer>
         <p>© 2026 Sharon Kim</p>
     </footer>
-
 </body>
 </html>
