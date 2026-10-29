@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,7 @@
 
         #clock {
             font-size: 50px;
-            color: black;
+            color: blue;
         }
     </style>
 </head>
@@ -36,12 +35,12 @@
 
             $("#clock").text(hours + ":" + minutes + ":" + seconds);
 
-            // Change to white briefly when the minute changes
+            // Change to white briefly at the beginning of each minute
             if (seconds === "00") {
                 $("#clock").css("color", "white");
 
                 setTimeout(function () {
-                    $("#clock").css("color", "black");
+                    $("#clock").css("color", "blue");
                 }, 1000);
             }
         }
