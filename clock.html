@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Digital Clock</title>
+    <title>Sharon's Clock</title>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -11,19 +11,32 @@
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            padding-top: 150px;
+            padding-top: 100px;
+        }
+
+        h1 {
+            color: black;
         }
 
         #clock {
             font-size: 50px;
-            color: blue;
+            color: black;
         }
     </style>
 </head>
 
 <body>
 
+    <h1>Sharon's Clock</h1>
+
+    <p>This digital clock displays the current time and updates every second.</p>
+
     <div id="clock">00:00:00</div>
+
+    <p>
+        The clock is normally black. At the beginning of each minute,
+        the text briefly changes to white and then returns to black.
+    </p>
 
     <script>
         function displayTimeFunction() {
@@ -35,12 +48,12 @@
 
             $("#clock").text(hours + ":" + minutes + ":" + seconds);
 
-            // Change to white briefly at the beginning of each minute
+            // Change the clock to white briefly at the beginning of each minute
             if (seconds === "00") {
                 $("#clock").css("color", "white");
 
                 setTimeout(function () {
-                    $("#clock").css("color", "blue");
+                    $("#clock").css("color", "black");
                 }, 1000);
             }
         }
