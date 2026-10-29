@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sharon's Clock</title>
+    <title>Digital Clock</title>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -11,11 +11,7 @@
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            padding-top: 100px;
-        }
-
-        h1 {
-            color: black;
+            padding-top: 150px;
         }
 
         #clock {
@@ -27,22 +23,9 @@
 
 <body>
 
-    <!-- Title -->
-    <h1>Sharon's Clock</h1>
-
-    <!-- Description above the clock -->
-    <p>This digital clock displays the current time and updates every second.</p>
-
     <div id="clock">00:00:00</div>
 
-    <!-- Description below the clock -->
-    <p>
-        The clock is normally blue. At the beginning of each minute,
-        the text briefly changes to white and then returns to blue.
-    </p>
-
     <script>
-        // Function to display the current time
         function displayTimeFunction() {
             const now = new Date();
 
@@ -50,10 +33,9 @@
             let minutes = String(now.getMinutes()).padStart(2, "0");
             let seconds = String(now.getSeconds()).padStart(2, "0");
 
-            // Display the time using jQuery
             $("#clock").text(hours + ":" + minutes + ":" + seconds);
 
-            // Change the text to white briefly at the beginning of each minute
+            // Change to white briefly at the beginning of each minute
             if (seconds === "00") {
                 $("#clock").css("color", "white");
 
@@ -63,7 +45,6 @@
             }
         }
 
-        // Display the time immediately and update it every second
         displayTimeFunction();
         setInterval(displayTimeFunction, 1000);
     </script>
