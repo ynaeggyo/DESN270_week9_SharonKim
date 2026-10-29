@@ -1,83 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Clock</title>
+    <meta charset="UTF-8">
+    <title>My Clock</title>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-  <style>
-    body {
-      background: #101827;
-      color: #66e3ff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 150px;
-      transition: background 0.5s, color 0.5s;
-    }
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding-top: 150px;
+        }
 
-    #clock {
-      font-size: 60px;
-      transition: transform 0.3s, color 0.3s;
-    }
+        h1 {
+            color: #333;
+        }
 
-    #message {
-      font-size: 18px;
-    }
-  </style>
+        #clock {
+            font-size: 50px;
+            color: blue;
+            transition: all 0.3s ease;
+        }
+
+        #message {
+            font-size: 20px;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>My Creative Clock</h1>
-  <div id="clock">00:00:00</div>
-  <p id="message">Time is moving!</p>
 
-  <script>
-    $(document).ready(function () {
+    <h1>My Digital Clock</h1>
 
-      function updateClock() {
-        const now = new Date();
+    <div id="clock">00:00:00</div>
 
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const seconds = String(now.getSeconds()).padStart(2, "0");
+    <p id="message">Welcome!</p>
 
-        $("#clock").text(`${hours}:${minutes}:${seconds}`);
+    <script>
+        // Function to display the current time
+        function displayTimeFunction() {
 
-        // Change the background based on the hour
-        if (now.getHours() >= 6 && now.getHours() < 12) {
-          $("body").css({
-            "background": "#fff3cd",
-            "color": "#8a5a00"
-          });
-          $("#message").text("Good morning");
-        } else if (now.getHours() >= 12 && now.getHours() < 18) {
-          $("body").css({
-            "background": "#ffe0c2",
-            "color": "#a33d00"
-          });
-          $("#message").text("Good afternoon");
-        } else {
-          $("body").css({
-            "background": "#101827",
-            "color": "#66e3ff"
-          });
-          $("#message").text("Good evening");
+            // Get the current time
+            const now = new Date();
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            // Add zero before single-digit numbers
+            hours = String(hours).padStart(2, "0");
+            minutes = String(minutes).padStart(2, "0");
+            seconds = String(seconds).padStart(2, "0");
+
+            // Display the time using jQuery
+            $("#clock").text(hours + ":" + minutes + ":" + seconds);
+
+            // Creative effect: change color and size
+            if (now.getSeconds() % 2 === 0) {
+                $("#clock").css({
+                    "color": "blue",
+                    "font-size": "60px"
+                });
+            } else {
+                $("#clock").css({
+                    "color": "hotpink",
+                    "font-size": "50px"
+                });
+            }
+
+            // Change the message based on the time
+            if (now.getHours() < 12) {
+                $("#message").text("Good morning!");
+            } else if (now.getHours() < 18) {
+                $("#message").text("Good afternoon!");
+            } else {
+                $("#message").text("Good evening!");
+            }
         }
 
-        // Even seconds: bigger clock
-        if (now.getSeconds() % 2 === 0) {
-          $("#clock").css("transform", "scale(1.1)");
-        } else {
-          $("#clock").css("transform", "scale(1)");
-        }
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-
-    });
-  </script>
+        // Display the time every second
+        displayTimeFunction();
+        setInterval(displayTimeFunction, 1000);
+    </script>
 
 </body>
 </html>
