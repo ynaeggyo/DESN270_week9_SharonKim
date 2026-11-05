@@ -21,7 +21,7 @@
 
         header {
             max-width: 1200px;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 30px auto;
             text-align: center;
         }
 
@@ -29,7 +29,7 @@
             font-size: 14px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #cccccc;
         }
 
@@ -39,7 +39,7 @@
             letter-spacing: -2px;
             line-height: 0.95;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .ticker {
@@ -47,7 +47,8 @@
             font-weight: 600;
             border-top: 1px solid #ffffff;
             border-bottom: 1px solid #ffffff;
-            padding: 14px 0;
+            padding: 12px 0;
+            margin-bottom: 40px;
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -108,17 +109,34 @@
         $(document).ready(function() {
             
             const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
-            const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=funny+cat+meme&limit=5&offset=0&rating=g&lang=en`;
 
-            $.getJSON(url, function(json) {
+            const catQueries = [
+                "happy cat meme",
+                "maxwell cat",
+                "dancing cat meme",
+                "pop cat",
+                "oiia oiia cat"
+            ];
+
+            function fetchIconicCatMemes() {
                 $("main").empty();
-                if (json.data && json.data.length > 0) {
-                    json.data.forEach(item => {
-                        let imageUrl = item.images.downsized_large.url;
-                        $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
+
+                let loadedCount = 0;
+
+                catQueries.forEach(query => {
+                    let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=1&offset=0&rating=g&lang=en`;
+
+                    $.getJSON(url, function(json) {
+                        if (json.data.length > 0 && loadedCount < 5) {
+                            let imageUrl = json.data[0].images.downsized_large.url;
+                            $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
+                            loadedCount++;
+                        }
                     });
-                }
-            });
+                });
+            }
+
+            fetchIconicCatMemes();
 
         });
     </script>
