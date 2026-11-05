@@ -108,25 +108,36 @@
     <script>
         $(document).ready(function() {
             
-            const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
-    
-            const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=cat+meme&limit=5&rating=g`;
+            const apiKey = "Dj7YdNGQ7PdVGGV3XTzzI51ZWoY1eYQR"; 
+            
+            // 보내준 링크 5개의 고유 ID 리스트
+            const catIds = [
+                "GK7dGndK4kyOozR9Xk",
+                "ytu2GUYbvhz7zShGwS",
+                "A0Zt7yuDULiy4ofmVD",
+                "pY8jLmZw0ElqvVeRH4",
+                "vK1p6B4hV6MhGNC2co"
+            ];
 
-            function fetchCatMemes() {
+            function fetchSelectedCatMemes() {
+                $("main").empty();
+
+                const idsString = catIds.join(",");
+                const url = `https://api.giphy.com/v1/gifs?api_key=${apiKey}&ids=${idsString}`;
+
                 $.getJSON(url, function(json) {
-                    $("main").empty();
                     if (json.data && json.data.length > 0) {
                         json.data.forEach(item => {
                             let imageUrl = item.images.fixed_height.url;
                             $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
                         });
                     }
-                }).fail(function() {
-                    console.error("API 요청 실패");
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("API 요청 실패:", textStatus, errorThrown);
                 });
             }
 
-            fetchCatMemes();
+            fetchSelectedCatMemes();
 
         });
     </script>
