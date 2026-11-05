@@ -108,31 +108,17 @@
         $(document).ready(function() {
             
             const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
+            const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=funny+cat+meme&limit=5&offset=0&rating=g&lang=en`;
 
-            const catIds = [
-                "L0q28v91Z9Rtu",
-                "ICOgILNqC999e",
-                "GeimhxWv73sQ8",
-                "Jq89aTUPu9B8A",
-                "W5YxsZxhZRdfG"
-            ];
-
-            function fetchCatMemes() {
+            $.getJSON(url, function(json) {
                 $("main").empty();
-
-                catIds.forEach(id => {
-                    let url = `https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`;
-
-                    $.getJSON(url, function(json) {
-                        if (json.data) {
-                            let imageUrl = json.data.images.downsized_large.url;
-                            $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
-                        }
+                if (json.data && json.data.length > 0) {
+                    json.data.forEach(item => {
+                        let imageUrl = item.images.downsized_large.url;
+                        $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
                     });
-                });
-            }
-
-            fetchCatMemes();
+                }
+            });
 
         });
     </script>
