@@ -2,76 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cat Meme API Example</title>
-    <!-- 제이쿼리 CDN -->
+    <title>Cat Memes Showcase</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: sans-serif;
             padding: 20px;
+            background-color: #f4f4f9;
         }
 
-        #search {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         main div {
-            float: left;
-            width: 150px;
-            height: 150px;
-            margin: 10px;
+            width: 200px;
+            height: 200px;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        main div:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-    <!-- 검색창 -->
-    <input type="text" id="search" name="search" placeholder="Search cat memes...">
+    <h1>🐱 Trending Cat Memes 🐱</h1>
 
-    <!-- 고양이 밈 이미지들이 들어갈 공간 -->
     <main></main>
 
     <script>
         $(document).ready(function() {
             
-            // 지피(Giphy) API 키 (본인 API 키를 여기에 넣으면 돼!)
-            const apiKey = "YOUR_GIPHY_API_KEY"; 
+            const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
 
-            // 검색 함수
-            function getGifs(value) {
-                let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${value}&limit=25&offset=0&rating=g&lang=en`;
+            function loadCatMemes() {
+                let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=cat+meme&limit=30&offset=0&rating=g&lang=en`;
 
                 $.getJSON(url, function(json) {
-                    console.log(json);
-
-                    // 기존에 있던 이미지들 초기화
                     $("main").empty();
 
-                    // 반복문 돌면서 25개의 고양이 밈 이미지를 화면에 띄우기
                     for (let i = 0; i < json.data.length; i++) {
                         let imageUrl = json.data[i].images.downsized_large.url;
                         
-                        // HTML에 동적으로 div 추가해서 배경이미지로 띄우기
                         $("main").append(`<div style="background-image: url('${imageUrl}');"></div>`);
                     }
                 });
             }
 
-            // 검색창에서 엔터 키를 누를 때
-            $("#search").keypress(function(e) {
-                if (e.which === 13) { // 엔터(Return) 키 코드 13
-                    let value = $("#search").val();
-                    getGifs(value);
-                }
-            });
+            loadCatMemes();
 
         });
     </script>
