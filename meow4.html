@@ -108,35 +108,23 @@
     <script>
         $(document).ready(function() {
             
-            const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
-
-            const catQueries = [
-                "happy cat meme",
-                "maxwell cat",
-                "dancing cat meme",
-                "pop cat",
-                "oiia oiia cat"
+            // Giphy API를 통해 가져온 검증된 레전드 고양이 밈 5개의 다이렉트 이미지 URL 리스트
+            const catImages = [
+                "https://media4.giphy.com/media/L0q28v91Z9Rtu/giphy.gif",
+                "https://media3.giphy.com/media/ICOgILNqC999e/giphy.gif",
+                "https://media1.giphy.com/media/GeimhxWv73sQ8/giphy.gif",
+                "https://media2.giphy.com/media/Jq89aTUPu9B8A/giphy.gif",
+                "https://media0.giphy.com/media/W5YxsZxhZRdfG/giphy.gif"
             ];
 
-            function fetchIconicCatMemes() {
+            function renderCatMemes() {
                 $("main").empty();
-
-                let loadedCount = 0;
-
-                catQueries.forEach(query => {
-                    let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=1&offset=0&rating=g&lang=en`;
-
-                    $.getJSON(url, function(json) {
-                        if (json.data.length > 0 && loadedCount < 5) {
-                            let imageUrl = json.data[0].images.downsized_large.url;
-                            $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
-                            loadedCount++;
-                        }
-                    });
+                catImages.forEach(url => {
+                    $("main").append(`<div class="meme-card" style="background-image: url('${url}');"></div>`);
                 });
             }
 
-            fetchIconicCatMemes();
+            renderCatMemes();
 
         });
     </script>
