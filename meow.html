@@ -92,7 +92,7 @@
 
         .meme-card {
             width: calc(33.333% - 14px);
-            height: 320px;
+            height: 300px;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -123,7 +123,7 @@
         <div class="sub-header">— Live Giphy API Showcase —</div>
         <h1>CAT OF THE DAY</h1>
         <div class="ticker">
-            <span>Trending Archive</span> —
+            <span>Trending Archive</span> — 
             <span>Real-Cat</span> — 
             <span>Cute Memes</span>
         </div>
@@ -139,21 +139,34 @@
             
             const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
 
-            function fetchCatMemes() {
-                let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=cat+meme&limit=27&offset=0&rating=g&lang=en`;
+            const catQueries = [
+                "happy cat meme",
+                "maxwell cat",
+                "dancing cat meme",
+                "pop cat",
+                "oiia oiia cat"
+            ];
 
-                $.getJSON(url, function(json) {
-                    $("main").empty();
-                    for (let i = 0; i < json.data.length; i++) {
-                        let imageUrl = json.data[i].images.downsized_large.url;
-                        $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
-                    }
+            function fetchIconicCatMemes() {
+                $("main").empty();
+
+                let loadedCount = 0;
+
+                catQueries.forEach(query => {
+                    let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=1&offset=0&rating=g&lang=en`;
+
+                    $.getJSON(url, function(json) {
+                        if (json.data.length > 0 && loadedCount < 5) {
+                            let imageUrl = json.data[0].images.downsized_large.url;
+                            $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
+                            loadedCount++;
+                        }
+                    });
                 });
             }
 
-            fetchCatMemes();
+            fetchIconicCatMemes();
 
-        
             const themes = [
                 { bg: "#e5ebd9", text: "#1b3022", btnBg: "#1b3022", btnText: "#e5ebd9" },
                 { bg: "#fceade", text: "#4a2810", btnBg: "#4a2810", btnText: "#fceade" },
@@ -181,6 +194,10 @@
                 themeIndex++;
             });
 
+        });
+    </script>
+</body>
+</html>
         });
     </script>
 </body>
