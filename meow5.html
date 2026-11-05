@@ -108,23 +108,31 @@
     <script>
         $(document).ready(function() {
             
-            
-            const catImages = [
-                "https://media4.giphy.com/media/L0q28v91Z9Rtu/giphy.gif",
-                "https://media3.giphy.com/media/ICOgILNqC999e/giphy.gif",
-                "https://media1.giphy.com/media/GeimhxWv73sQ8/giphy.gif",
-                "https://media2.giphy.com/media/Jq89aTUPu9B8A/giphy.gif",
-                "https://media0.giphy.com/media/W5YxsZxhZRdfG/giphy.gif"
+            const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
+            const catQueries = [
+                "happy cat meme",
+                "maxwell cat",
+                "dancing cat",
+                "pop cat",
+                "cute cat meme"
             ];
 
-            function renderCatMemes() {
+            function fetchIconicCatMemes() {
                 $("main").empty();
-                catImages.forEach(url => {
-                    $("main").append(`<div class="meme-card" style="background-image: url('${url}');"></div>`);
+
+                catQueries.forEach(query => {
+                    let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=1&offset=0&rating=g&lang=en`;
+
+                    $.getJSON(url, function(json) {
+                        if (json.data && json.data.length > 0) {
+                            let imageUrl = json.data[0].images.fixed_height.url;
+                            $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
+                        }
+                    });
                 });
             }
 
-            renderCatMemes();
+            fetchIconicCatMemes();
 
         });
     </script>
