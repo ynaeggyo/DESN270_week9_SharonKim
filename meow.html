@@ -109,33 +109,30 @@
             
             const apiKey = "iOoUwjBnNMlKVPkWcoWvsg6yz7dgx8HV"; 
 
-            const catQueries = [
-                "happy cat meme",
-                "maxwell cat",
-                "bongo cat meme",
-                "pop cat",
-                "blep cat meme"
+            const catIds = [
+                "L0q28v91Z9Rtu",
+                "ICOgILNqC999e",
+                "GeimhxWv73sQ8",
+                "Jq89aTUPu9B8A",
+                "W5YxsZxhZRdfG"
             ];
 
-            function fetchIconicCatMemes() {
+            function fetchCatMemes() {
                 $("main").empty();
 
-                let loadedCount = 0;
-
-                catQueries.forEach(query => {
-                    let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=1&offset=0&rating=g&lang=en`;
+                catIds.forEach(id => {
+                    let url = `https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`;
 
                     $.getJSON(url, function(json) {
-                        if (json.data.length > 0 && loadedCount < 5) {
-                            let imageUrl = json.data[0].images.downsized_large.url;
+                        if (json.data) {
+                            let imageUrl = json.data.images.downsized_large.url;
                             $("main").append(`<div class="meme-card" style="background-image: url('${imageUrl}');"></div>`);
-                            loadedCount++;
                         }
                     });
                 });
             }
 
-            fetchIconicCatMemes();
+            fetchCatMemes();
 
         });
     </script>
