@@ -14,15 +14,14 @@
 
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f7f6f0;
-            color: #111111;
+            background-color: #111111;
+            color: #ffffff;
             padding: 40px 20px;
-            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         header {
             max-width: 1200px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 40px auto;
             text-align: center;
         }
 
@@ -30,9 +29,8 @@
             font-size: 14px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            color: #666666;
-            transition: color 0.4s ease;
+            margin-bottom: 15px;
+            color: #cccccc;
         }
 
         h1 {
@@ -41,44 +39,19 @@
             letter-spacing: -2px;
             line-height: 0.95;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .ticker {
             font-size: 15px;
             font-weight: 600;
-            border-top: 1px solid #111111;
-            border-bottom: 1px solid #111111;
-            padding: 12px 0;
-            margin-bottom: 40px;
+            border-top: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
+            padding: 14px 0;
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            transition: border-color 0.4s ease;
-        }
-
-        .controls {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .vibe-btn {
-            background-color: #111111;
-            color: #ffffff;
-            border: none;
-            padding: 14px 28px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.4s ease, color 0.4s ease;
-        }
-
-        .vibe-btn:hover {
-            transform: scale(1.03);
         }
 
         main {
@@ -127,9 +100,6 @@
             <span>Real-Cat</span> — 
             <span>Cute Memes</span>
         </div>
-        <div class="controls">
-            <button class="vibe-btn" id="vibeBtn">Change Palette</button>
-        </div>
     </header>
 
     <main></main>
@@ -142,9 +112,9 @@
             const catQueries = [
                 "happy cat meme",
                 "maxwell cat",
-                "dancing cat meme",
+                "bongo cat meme",
                 "pop cat",
-                "oiia oiia cat"
+                "blep cat meme"
             ];
 
             function fetchIconicCatMemes() {
@@ -167,37 +137,6 @@
 
             fetchIconicCatMemes();
 
-            const themes = [
-                { bg: "#e5ebd9", text: "#1b3022", btnBg: "#1b3022", btnText: "#e5ebd9" },
-                { bg: "#fceade", text: "#4a2810", btnBg: "#4a2810", btnText: "#fceade" },
-                { bg: "#e3edf7", text: "#0f2c59", btnBg: "#0f2c59", btnText: "#e3edf7" },
-                { bg: "#f4effa", text: "#2d124d", btnBg: "#2d124d", btnText: "#f4effa" },
-                { bg: "#111111", text: "#f7f6f0", btnBg: "#f7f6f0", btnText: "#111111" }
-            ];
-            
-            let themeIndex = 0;
-
-            $("#vibeBtn").click(function() {
-                let currentTheme = themes[themeIndex % themes.length];
-                
-                $("body").css({
-                    "background-color": currentTheme.bg,
-                    "color": currentTheme.text
-                });
-                $(".sub-header").css("color", currentTheme.text);
-                $(".ticker").css("border-color", currentTheme.text);
-                $(".vibe-btn").css({
-                    "background-color": currentTheme.btnBg,
-                    "color": currentTheme.btnText
-                });
-
-                themeIndex++;
-            });
-
-        });
-    </script>
-</body>
-</html>
         });
     </script>
 </body>
